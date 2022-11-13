@@ -13,7 +13,7 @@ class ResUsers(models.Model):
         if 'branch_id' in values or 'branch_ids' in values:
             self.env['ir.model.access'].call_cache_clearing_methods()
             self.env['ir.rule'].clear_caches()
-            self.has_group.clear_cache(self)
+            #self.has_group.clear_cache(self)
         user = super(ResUsers, self).write(values)
         return user
 
