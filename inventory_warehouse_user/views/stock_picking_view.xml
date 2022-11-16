@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="inherit_user_warehouse_picking" model="ir.ui.view">
+            <field name="name">inherit_user_warehouse_picking</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='button_validate'][1]" position="replace">
+                    <button name="button_validate"
+                            attrs="{'invisible': ['|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}"
+                            string="Validate" type="object" class="oe_highlight"
+                            groups="inventory_warehouse_user.button_validate_group" data-hotkey="v"/>
+
+                </xpath>
+                <xpath expr="//header/button[@name='button_validate'][2]" position="replace">
+                    <button name="button_validate"
+                            attrs="{'invisible': ['|', ('state', 'not in', ('waiting', 'confirmed')), ('show_validate', '=', False)]}"
+                            string="Validate" type="object" groups="inventory_warehouse_user.button_validate_group"
+                            class="o_btn_validate" data-hotkey="v"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_picking_type_form" model="ir.ui.view">
+            <field name="name">stock.picking.type.form</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='show_reserved']" position="replace">
+                    <field name="user_ids" widget="many2many_tags" string="Users"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="stock.stock_picking_type_action" model="ir.actions.act_window">
+            <field name="name">Inventory Overview</field>
+            <field name="res_model">stock.picking.type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">[('user_ids','in',uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new operation type
+                </p>
+                <p>
+                    The operation type system allows you to assign each stock
+                    operation a specific type which will alter its views accordingly.
+                    On the operation type you could e.g. specify if packing is needed by default,
+                    if it should show the customer.
+                </p>
+            </field>
+        </record>
+        <menuitem id="stock.menu_stock_warehouse_mgmt" name="Operations" parent="stock.menu_stock_root" sequence="2" groups="stock.group_stock_manager"/>
+    </data>
+</odoo>

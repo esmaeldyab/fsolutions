@@ -1,19 +1,19 @@
 <odoo>
-    <record id="view_picking_form" model="ir.ui.view">
-        <field name="name">stock.picking.form</field>
-        <field name="model">stock.picking</field>
-        <field name="inherit_id" ref="stock.view_picking_form"/>
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <field name="state" position="after">
                 <field name="approval_next_line_ids" invisible="1"/>
                 <button name="action_approval_next_approve" string="Approve"
                         class="oe_highlight oe_inline"
-                        attrs="{'invisible': [('approval_next_line_ids','=', [])]}"
+                        attrs="{'invisible': ['|',('state','not in',('draft','sent')),('approval_next_line_ids', '=', [])]}"
                         type="object"/>
                 <button name="action_approval_next_reject" string="Reject"
-                        attrs="{'invisible': [('approval_next_line_ids','=', [])]}"
+                        attrs="{'invisible': ['|',('state','not in',('draft','sent')),('approval_next_line_ids', '=', [])]}"
                         class="oe_inline" type="object"/>
-            </xpath>
+            </field>
             <div name="button_box" position="inside">
                 <field name="approval_template_id" invisible="1"/>
                 <button name="action_open_approvals" type="object"

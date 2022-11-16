@@ -81,7 +81,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="hr_approval_structure_menu"
+        <menuitem id="hr_approval_structure_menu" groups="hr_approval_structure.group_hr_approval_structure"
                   name="Approval Structure" web_icon="hr_approval_structure,static/description/icon.png"/>
         <menuitem id="hr_authorization_approval_template_menu"
                   name="Approval Mandates"
