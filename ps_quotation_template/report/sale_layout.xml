@@ -98,7 +98,7 @@
         </div>
         <div class="footer o_background_footer">
             <div class="text-center" style="font-size:14px;">
-                <ul class="list-inline">
+                <ul class="list-inline" style='font-weight:bold;font-size:14px;'>
                     <li t-if="company.phone" class="list-inline-item">
                         <i class="fa fa-phone" role="img" aria-label="Phone" title="Phone"/>
                         <span t-field="company.phone"/>

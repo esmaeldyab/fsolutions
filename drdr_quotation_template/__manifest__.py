@@ -26,6 +26,7 @@
     'data': [
         'views/company.xml',
         'report/inherit_external_layout_sale.xml',
+        'report/inherit_ps_sale_report_document.xml',
     ],
     'assets': {
         'web.report_assets_pdf': [ 
