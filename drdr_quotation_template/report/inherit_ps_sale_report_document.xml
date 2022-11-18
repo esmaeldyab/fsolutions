@@ -102,7 +102,7 @@
                                 </tr>
                             </thead>
                             <t t-set="tax_total" t-value="0" />
-                            <t t-set="n" t-value="0" />
+                            <t t-set="n" t-value="1" />
                             <t t-set="untaxed_total" t-value="0" />
                             <tbody class="invoice_tbody">
                                 <tr t-foreach="o.order_line.filtered(lambda line: line.product_id.default_code != 'DISC')"
@@ -117,8 +117,8 @@
                                         <td style="text-align:center;padding:3pt; border:1pt solid black;">
                                             <span t-esc="'%.2f'%(l.product_uom_qty)" />
                                         </td>
-                                        <td style="border:1pt solid black;padding:3pt">
-                                            <span t-esc="l.product_uom" />
+                                        <td style="border:1pt solid black;padding:3pt;text-align:center">
+                                            <span t-esc="l.product_uom.name" style='text-align:center' />
                                         </td>
                                         <td style="text-align:right;padding:3pt;border:1pt solid black;">
                                             <span t-field="l.price_unit"
