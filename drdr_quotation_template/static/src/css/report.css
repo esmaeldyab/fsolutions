@@ -34,6 +34,7 @@
 
 .page h3 {
   font-family: cali !important;
+  font-style: italic;
   background-color: rgb(255, 255, 255) !important;
   color: rgb(0, 0, 0) !important;
 }

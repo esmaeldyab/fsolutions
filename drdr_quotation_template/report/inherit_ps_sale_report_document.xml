@@ -31,10 +31,9 @@
                                     </span>
                                 </td>
                             </tr>
-
                             <tr>
                                 <td style="border:1pt solid black;text-align:center">
-                                    <span t-field="o.date_order" />
+                                    <span t-field="o.date_order" t-options='{"widget": "date"}' />
                                 </td>
                                 <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
                                     <span style="font-weight: bold">
@@ -53,7 +52,7 @@
 
                             <tr>
                                 <td style="border:1pt solid black;text-align:center">
-                                    <span t-field="o.expected_date" />
+                                    <span t-field="o.validity_date" t-options='{"widget": "date"}'/>
                                 </td>
                                 <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
                                     <span style="font-weight: bold">
@@ -153,7 +152,7 @@
                                 </tr>
                                 <tr style="background-color:#FED2AA;">
                                     <td style="border:1pt solid black;text-align:right;padding:3pt" class="text-right">
-                                        <span t-esc="tax_total"
+                                        <span t-esc="o.amount_tax"
                                             t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                     </td>
                                     <td style="border:1pt solid black;font-weight: bold;text-align:left;padding:3pt">
