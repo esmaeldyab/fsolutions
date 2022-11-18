@@ -1,8 +1,15 @@
 @font-face {
     font-family: cali;
-    src: url('../fonts/CALIFI.TTF') format('woff');
+    src: url('../fonts/CALIFI.TTF') format('woff')
 }
-
+@font-face {
+    font-family: calir;
+    src: url('../fonts/CALIFR.TTF') format('woff')
+}
+.fo{
+    font-family: calir !important;
+    font-size: 11px;
+}
 .cover-log {
   display: -webkit-box; /* wkhtmltopdf uses this one */
   -webkit-box-direction: row; /* WebKit */
@@ -26,7 +33,7 @@
 }
 
 .page h3 {
-  font-family: cali;
+  font-family: cali !important;
   background-color: rgb(255, 255, 255) !important;
   color: rgb(0, 0, 0) !important;
 }

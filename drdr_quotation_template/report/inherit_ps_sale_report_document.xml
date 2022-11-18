@@ -2,14 +2,14 @@
 <odoo>
     <template id="inherit_ps_sale_report_document" inherit_id="ps_quotation_template.ps_sale_report_document">
         <xpath expr="//div[hasclass('page')]" position="replace">
-            <div class="page" style="font-size:14px;font-family:Arial!important">
+            <div class="page">
                 <div style="border:2px solid #009DAE;border-top-left-radius:5px;border-top-right-radius:5px;margin-bottom:20px; margin-top:-30px">
                     <h3 align="center" style="color:white;padding-top:30px;padding-bottom:5px">Quotation</h3>
                     <hr style="border:3px solid gray;margin-bottom:-10px;margin-top:-10px;margin-left:60px;margin-right:60px"/>
                     <hr style="border:1px solid gray;margin-left:60px;margin-right:60px"/>
                 </div>
 
-                <div class="row mt32 mb32" style='font-size:11px;margin-bottom:20px;margin-left:50px;margin-right:50px'>
+                <div class="row mt32 mb32 fo" style='margin-bottom:20px;margin-left:50px;margin-right:50px'>
                     <div class="col-12">
                         <table class="table-condensed" dir="rtl"
                             style="width:100%;padding:10pt;color:black;">
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="row mt32 mb32" style='font-size:11px;margin-bottom:20px;margin-left:50px;margin-right:50px'>
+                <div class="row mt32 mb32 fo" style='margin-bottom:20px;margin-left:50px;margin-right:50px'>
                     <div class="col-12">
                         <t t-set="display_barcode" t-value="any(l.barcode for l in o.order_line)" />
                         <table style="margin-bottom:20px;width:100%;color:black"
@@ -108,8 +108,8 @@
                                 <tr t-foreach="o.order_line.filtered(lambda line: line.product_id.default_code != 'DISC')"
                                     t-as="l">
                                     <t t-if="not l.display_type">
-                                        <td style="border:1pt solid black;padding:3pt">
-                                            <span t-esc="n" style='text-align:center'/>
+                                        <td style="border:1pt solid black;padding:3pt;text-align:center">
+                                            <span t-esc="n"/>
                                         </td>
                                         <td style="border:1pt solid black;padding:3pt">
                                             <span t-field="l.name" />
@@ -136,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="row mt32 mb32" style='font-size:11px;margin-bottom:20px;margin-left:50px;margin-right:50px'>
+                <div class="row mt32 mb32 fo" style='margin-bottom:20px;margin-left:50px;margin-right:50px'>
                     <div class="col-12">
                         <table style="margin-bottom:20px;border:1pt solid grey;width:100%;color:black"
                             class="table-condensed" id="totals" dir="rtl">
@@ -174,7 +174,7 @@
                     </div>
                 </div>
                 <br />
-                <div class="row mt32 mb32">
+                <div class="row mt32 mb32 fo">
                     <div class="col-12">
                         <p t-if="o.note" dir="rtl">
                             <br />
