@@ -5,7 +5,7 @@ import logging
 
 from datetime import date, timedelta, datetime
 from pytz import timezone, utc
-
+from werkzeug.urls import url_encode
 from odoo import api, fields, models, _
 from odoo.tools.safe_eval import safe_eval
 from odoo.exceptions import UserError, AccessError
