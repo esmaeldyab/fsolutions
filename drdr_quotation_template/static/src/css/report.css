@@ -16,6 +16,11 @@
   margin-right: -50px;
   
 }
+.cover-fo{
+    width: max-content;
+    height: 100px;
+    margin-bottom: 50px;
+}
 .page div {
   border: 0px !important;
 }

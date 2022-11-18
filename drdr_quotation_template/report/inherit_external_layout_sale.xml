@@ -14,6 +14,15 @@
                 <img src="/drdr_quotation_template/static/src/description/cover.png" t-options='{"widget": "image"}' />
             </div> 
         </xpath>
+        <xpath expr="//div[hasclass('footer')]" position="replace">
+            <div class='footer cover-fo'>
+                <img src="/drdr_quotation_template/static/src/description/footer.png" t-options='{"widget": "image"}' />
+            </div>
+        </xpath>
+        
+
     </template>
+
+
     
 </odoo>
