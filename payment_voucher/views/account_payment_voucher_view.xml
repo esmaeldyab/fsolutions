@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_payment_voucher_form" model="ir.ui.view">
+        <field name="name">account.payment.voucher.form</field>
+        <field name="model">account.payment.voucher</field>
+        <field name="arch" type="xml">
+            <form string="Payment Voucher">
+                <header>
+                    <!-- Post -->
+                    <button name="action_post" string="Post" class="oe_highlight"
+                            type="object" states="draft"/>
+                    <!-- Cancel -->
+                    <button name="action_draft" string="Set to Draft" type="object"
+                            states="posted"
+                            groups="account.group_account_invoice"/>
+                    <button name="action_cancel" string="Cancel" type="object"
+                            states="draft,posted"
+                            groups="account.group_account_invoice"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1 class="mt0">
+                            <field name="name" readonly="1"
+                                   placeholder="JRNL/2016/00001"/>
+                        </h1>
+
+                    </div>
+                    <group>
+                        <group id="header_left_group">
+                            <field name="journal_id"/>
+                            <field name="ref"/>
+                            <field name="collect_entry"/>
+                        </group>
+                        <group id="header_right_group">
+                            <field name="date"/>
+                            <field name="currency_id"/>
+                            <field name="company_currency_id" invisible="1"/>
+                            <field name="analytic_account_id"/>
+                            <field name="analytic_tag_ids" widget="many2many_tags"/>
+                            <field name="amount_total"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page id="aml_tab" string="Voucher Items">
+                            <field name="voucher_line_ids"
+                                   mode="tree,kanban"
+                                   context="{'default_currency_id': currency_id or company_currency_id,'default_analytic_account_id': analytic_account_id,'default_analytic_tag_ids': analytic_tag_ids}">
+                                <tree editable="bottom" string="Voucher Items">
+                                    <!-- Displayed fields -->
+                                    <field name="account_id"
+                                           required="1"
+                                           domain="[('deprecated', '=', False), ('company_id', '=', parent.company_id)]"/>
+                                    <field name="partner_id"
+                                           domain="['|', ('parent_id', '=', False), ('is_company', '=', True)]"/>
+                                    <field name="bank_id"/>
+                                    <field name="name" widget="section_and_note_text" optional="show"/>
+                                    <field name="ref" widget="section_and_note_text" optional="show"/>
+                                    <field name="analytic_account_id"
+                                           optional="show"
+                                           domain="['|', ('company_id', '=', parent.company_id), ('company_id', '=', False)]"
+                                           groups="analytic.group_analytic_accounting"/>
+                                    <field name="analytic_tag_ids"
+                                           optional="show"
+                                           groups="analytic.group_analytic_tags"
+                                           widget="many2many_tags"/>
+                                    <field name="company_id" invisible="1"/>
+                                    <field name="amount" sum="total"
+                                           optional="show"/>
+                                    <field name="currency_id" options="{'no_create': True}"
+                                           groups="base.group_multi_currency"/>
+                                    <field name="tax_ids" widget="many2many_tags"
+                                           optional="show"
+                                           options="{'no_create': True}"
+                                           force_save="1"/>
+                                    <field name="tax_amount" optional="hide"/>
+                                </tree>
+                            </field>
+                            <group name="note_group" col="6">
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="payment_total">
+                                    <field name="amount_total" widget='monetary'
+                                           options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_tax" widget='monetary'
+                                           options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page id="other_tab_entry" string="Other Info" name="other_info">
+                            <group id="other_tab_entry_group">
+                                <group>
+                                    <field name="voucher_type" invisible="1"/>
+                                    <field name="move_id" readonly="1"/>
+                                    <field name="company_id" groups="base.group_multi_company" required="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_payment_voucher_tree" model="ir.ui.view">
+        <field name="name">account.payment.voucher.tree</field>
+        <field name="model">account.payment.voucher</field>
+        <field name="arch" type="xml">
+            <tree edit="false" sample="1" decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
+                <header>
+                    <button name="action_post" type="object" string="Confirm"/>
+                </header>
+                <field name="company_currency_id" invisible="1"/>
+                <field name="date"/>
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="amount_total" string="Total Amount"/>
+                <field name="currency_id" string="Payment Currency"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'"
+                       decoration-success="state == 'posted'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_account_payments_voucher_in" model="ir.actions.act_window">
+        <field name="name">Payment In-Voucher</field>
+        <field name="res_model">account.payment.voucher</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+            'default_voucher_type': 'in_voucher', }
+        </field>
+        <field name="domain">[('voucher_type','=','in_voucher')]</field>
+        <field name="view_id" ref="view_account_payment_voucher_tree"/>
+    </record>
+
+    <record id="action_account_payments_voucher_out" model="ir.actions.act_window">
+        <field name="name">Payment Out-Voucher</field>
+        <field name="res_model">account.payment.voucher</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{
+            'default_voucher_type': 'out_voucher', }
+        </field>
+        <field name="domain">[('voucher_type','=','out_voucher')]</field>
+        <field name="view_id" ref="view_account_payment_voucher_tree"/>
+    </record>
+
+    <menuitem id="menu_action_account_payments_voucher_in" action="action_account_payments_voucher_in" sequence="20"
+              parent="account.menu_finance_receivables"/>
+    <menuitem id="menu_action_account_payments_voucher_out" action="action_account_payments_voucher_out" sequence="20"
+              parent="account.menu_finance_payables"/>
+
+
+</odoo>
