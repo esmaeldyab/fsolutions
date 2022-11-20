@@ -30,3 +30,8 @@ td{
     margin-left:500px;
     padding-bottom: 10px;
 }
+#lines tr{
+    background-color:#5B4F97 !important;
+    color:#fff !important;
+    font-weight:bold;
+}
