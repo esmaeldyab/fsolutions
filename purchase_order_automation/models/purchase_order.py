@@ -90,6 +90,7 @@ class PurchaseOrder(models.Model):
         for order in self:
             if self.env.user.company_id.is_purchase_deliver and order.picking_ids:
                 for picking in self.picking_ids:
+                    picking.scheduled_date = order.date_order
                     picking.action_assign()
                     picking.action_confirm()
                     for mv in picking.move_ids_without_package:

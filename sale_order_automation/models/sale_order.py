@@ -4,7 +4,7 @@ from odoo import api, fields, models, exceptions
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    sale_date = fields.Datetime('Actual Date', copy=False, required=True, readonly=True, index=True,
+    sale_date = fields.Datetime('Actual Date', readonly=True, default=fields.Datetime.now,
                                 states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
 
     def action_confirm(self):
@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
             warehouse = order.warehouse_id
             if warehouse.is_delivery_set_to_done and order.picking_ids:
                 for picking in order.picking_ids:
-                    picking.update({'date_done':order.sale_date,'effective_date': order.sale_date, 'scheduled_date': order.sale_date})
+                    picking.update({'date_done':order.sale_date,'scheduled_date': order.sale_date})
                     picking.sudo().action_assign()
                     picking.sudo().action_confirm()
                     for mv in picking.move_ids_without_package:

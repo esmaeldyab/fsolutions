@@ -21,6 +21,12 @@ class StockPicking(models.Model):
     effective_date = fields.Datetime('Effective Date', copy=False, readonly=False,
                                      help="Date at which the transfer has been processed or cancelled.")
 
+    @api.constrains('scheduled_date')
+    def change_effective_date(self):
+        for rec in self:
+            if rec.scheduled_date:
+                rec.effective_date = rec.scheduled_date
+
     def _set_scheduled_date(self):
         for picking in self:
             if picking.state in ('cancel'):
