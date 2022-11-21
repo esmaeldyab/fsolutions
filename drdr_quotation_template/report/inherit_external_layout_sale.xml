@@ -10,7 +10,7 @@
             </li>
         </xpath>
         <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
-            <div t-if="company.logo_quotation" t-attf-class="header cover-log o_company_#{company.id}_layout"  dir="rtl">
+            <div t-attf-class="header cover-log o_company_#{company.id}_layout"  dir="rtl">
                 <img src="/drdr_quotation_template/static/src/description/cover.png" t-options='{"widget": "image"}' />
             </div> 
         </xpath>

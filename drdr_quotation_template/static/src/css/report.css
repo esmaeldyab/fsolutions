@@ -10,6 +10,9 @@
     font-family: calir !important;
     font-size: 11px;
 }
+.page{
+  font-weight: bold;
+}
 .cover-log {
   display: -webkit-box; /* wkhtmltopdf uses this one */
   -webkit-box-direction: row; /* WebKit */
@@ -50,4 +53,7 @@
 .gray thead td {
   background-color: #e5dfeb !important;
   color: #000;
+}
+.arabic{
+  font-family: cali !important;
 }
