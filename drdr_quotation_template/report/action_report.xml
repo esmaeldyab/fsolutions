@@ -2,30 +2,58 @@
 <odoo>
     <data>
         <report
-                id="action_drdr_quotation"
-                string="عرض البيع بالعربي"
-                model="sale.order"
-                report_type="qweb-pdf"
-                file="drdr_quotation_template.drdr_report_quotation_ar"
-                name="drdr_quotation_template.drdr_report_quotation_ar"
-                print_report_name="'%s - %s' %(object.partner_id.name,object.date_order)"/>
+            id="action_drdr_quotation_us"
+            string="عرض البيع بالانجليزي"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="drdr_quotation_template.drdr_report_quotation_us"
+            name="drdr_quotation_template.drdr_report_quotation_us"
+            print_report_name="'%s - %s' %(object.partner_id.name,object.date_order)" />
+
+        <report
+            id="action_drdr_quotation_ar"
+            string="عرض البيع العربي"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="drdr_quotation_template.drdr_report_quotation_ar"
+            name="drdr_quotation_template.drdr_report_quotation_ar"
+            print_report_name="'%s - %s' %(object.partner_id.name,object.date_order)" />
         
-        <record id="paperformat_action_report_sale_ps" model="report.paperformat">
-                    <field name="name">Saudi Sale Report</field>
-                    <field name="default" eval="True"/>
-                    <field name="format">custom</field>
-                    <field name="page_height">0</field>
-                    <field name="page_width">0</field>
-                    <field name="orientation">Portrait</field>
-                    <field name="margin_top">20</field>
-                    <field name="margin_bottom">30</field>
-                    <field name="margin_left">0</field>
-                    <field name="margin_right">0</field>
-                    <field name="header_line" eval="False"/>
-                    <field name="header_spacing">20</field>
-                    <field name="dpi">90</field>
-                    <field name="report_ids"
-                           eval="[(6,0,[ref('drdr_quotation_template.action_drdr_quotation')])]"/>
-                </record>
+        <record id="paperformat_action_report_sale_ps_us" model="report.paperformat">
+            <field name="name">Saudi Sale Report</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">20</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">20</field>
+            <field name="dpi">90</field>
+            <field name="report_ids"
+                eval="[(6,0,[ref('drdr_quotation_template.action_drdr_quotation_us')])]" />
+            </record>
+
+        <record id="paperformat_action_report_sale_ps_ar" model="report.paperformat">
+                <field name="name">Saudi Sale Report</field>
+                <field name="default" eval="True" />
+                <field name="format">custom</field>
+                <field name="page_height">0</field>
+                <field name="page_width">0</field>
+                <field name="orientation">Portrait</field>
+                <field name="margin_top">20</field>
+                <field name="margin_bottom">30</field>
+                <field name="margin_left">0</field>
+                <field name="margin_right">0</field>
+                <field name="header_line" eval="False" />
+                <field name="header_spacing">20</field>
+                <field name="dpi">90</field>
+                <field name="report_ids"
+                    eval="[(6,0,[ref('drdr_quotation_template.action_drdr_quotation_ar')])]" />
+            </record>
+
     </data>
 </odoo>
