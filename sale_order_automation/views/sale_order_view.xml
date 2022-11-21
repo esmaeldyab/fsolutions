@@ -9,7 +9,7 @@
             <field name="priority" eval="20"/>
             <field name="arch" type="xml">
                 <field name="show_update_pricelist" position="before">
-                    <field name="sale_date" string="Actual Date"/>
+                    <field name="sale_date" string="Actual Date" required="1"/>
                 </field>
             </field>
         </record>

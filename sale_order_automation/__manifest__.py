@@ -15,7 +15,7 @@
     'website': 'https://www.craftsync.com/',
     'license': 'LGPL-3',
     'support':'info@craftsync.com',
-    'depends' : ['sale','stock','update_inventory_date'],
+    'depends' : ['sale','stock','account','l10n_sa_invoice'],
     'data': [
         'views/stock_warehouse.xml',
         'views/sale_order_view.xml',
