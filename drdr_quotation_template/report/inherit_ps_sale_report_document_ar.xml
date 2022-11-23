@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="inherit_ps_sale_report_document_ar" inherit_id="ps_quotation_template.ps_sale_report_document">
+    <template id="inherit_ps_sale_report_document_ar" inherit_id="ps_quotation_template.ps_sale_report_document" primary='True'>
         <xpath expr="//div[hasclass('page')]" position="replace">
             <div class="page">
                 <div style="border:2px solid #009DAE;border-top-left-radius:5px;border-top-right-radius:5px;margin-bottom:20px; margin-top:-30px">
@@ -11,39 +11,39 @@
 
                 <div class="row mt32 mb32 fo" style='margin-bottom:20px;margin-left:50px;margin-right:50px'>
                     <div class="col-12">
-                        <table class="table-condensed" dir="rtl"
+                        <table class="table-condensed" dir="ltl"
                             style="width:100%;padding:10pt;color:black;">
                             <tr>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.name" />
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         رقم العرض
                                     </span>
                                 </td>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.partner_id" />
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         العميل
                                     </span>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.date_order" t-options='{"widget": "date"}' />
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         تاريخ بداية العرض
                                     </span>
                                 </td>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.partner_id.email" />
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         البريد الالكتروني
                                     </span>
@@ -51,18 +51,18 @@
                             </tr>
 
                             <tr>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.validity_date" t-options='{"widget": "date"}'/>
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         تاريخ نهاية العرض
                                     </span>
                                 </td>
-                                <td style="border:1pt solid black;text-align:center">
+                                <td style="border:1pt solid black;text-align:right">
                                     <span t-field="o.partner_id.phone" />
                                 </td>
-                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:center">
+                                <td style="background-color:#E5DFEB;border:1pt solid black;text-align:right">
                                     <span style="font-weight: bold">
                                         رقم العميل
                                     </span>
@@ -77,55 +77,55 @@
                     <div class="col-12">
                         <t t-set="display_barcode" t-value="any(l.barcode for l in o.order_line)" />
                         <table style="margin-bottom:20px;width:100%;color:black"
-                            class="table-condensed gray">
+                            class="table-condensed gray"  dir="ltl">
                             <thead>
                                 <tr style="background-color:#E5DFEB;font-weight: bold;">
-                                    <td width="5%" style="border:1pt solid black;text-align:center;padding:2pt;">
-                                <span style='font-weight: bold'>رقم المنتج</span>
-                            </td>
-                                    <td width="25%" style="border:1pt solid black;text-align:center;padding:2pt;">
-                                <sapn style='font-weight: bold'>الوصف</sapn>
-                            </td>
-                                    <td width="10%" style="border:1pt solid black;text-align:center;padding:2pt;width:7%">
-                                <sapn style='font-weight: bold'>الكمية</sapn>
-                            </td>
-                                    <td width="10%" style="border:1pt solid black;text-align:center;padding:2pt;width:7%">
-                                <sapn style='font-weight: bold'>الوحدة</sapn>
-                            </td>
-                                    <td width="10%" style="border:1pt solid black;text-align:center;padding:2pt;">
-                                <sapn style='font-weight: bold'>سعر الوحدة</sapn>
-                            </td>
-                                    <td width="10%" style="border:1pt solid black;text-align:center;padding:2pt;">
-                                <sapn style='font-weight: bold'>السعر الاجمالي</sapn>
-                            </td>
+                                    <td width="10%" style="border:1pt solid black;text-align:right;padding:2pt;">
+                                        <sapn style='font-weight: bold'>السعر الاجمالي</sapn>
+                                    </td>
+                                    <td width="10%" style="border:1pt solid black;text-align:right;padding:2pt;">
+                                        <sapn style='font-weight: bold'>سعر الوحدة</sapn>
+                                    </td>
+                                    <td width="10%" style="border:1pt solid black;text-align:right;padding:2pt;width:7%">
+                                        <sapn style='font-weight: bold'>الوحدة</sapn>
+                                    </td>
+                                    <td width="10%" style="border:1pt solid black;text-align:right;padding:2pt;width:7%">
+                                        <sapn style='font-weight: bold'>الكمية</sapn>
+                                    </td>
+                                    <td width="25%" style="border:1pt solid black;text-align:right;padding:2pt;">
+                                        <sapn style='font-weight: bold'>الوصف</sapn>
+                                    </td>
+                                    <td width="5%" style="border:1pt solid black;text-align:right;padding:2pt;">
+                                        <span style='font-weight: bold'>التسلسل</span>
+                                    </td>
                                 </tr>
                             </thead>
                             <t t-set="tax_total" t-value="0" />
                             <t t-set="n" t-value="1" />
                             <t t-set="untaxed_total" t-value="0" />
-                            <tbody class="invoice_tbody">
+                            <tbody class="invoice_tbody" dir="ltl">
                                 <tr t-foreach="o.order_line.filtered(lambda line: line.product_id.default_code != 'DISC')"
                                     t-as="l">
                                     <t t-if="not l.display_type">
-                                        <td style="border:1pt solid black;padding:3pt;text-align:center">
-                                            <span t-esc="n"/>
-                                        </td>
-                                        <td style="border:1pt solid black;padding:3pt">
-                                            <span t-field="l.name" />
-                                        </td>
-                                        <td style="text-align:center;padding:3pt; border:1pt solid black;">
-                                            <span t-esc="'%.2f'%(l.product_uom_qty)" />
-                                        </td>
-                                        <td style="border:1pt solid black;padding:3pt;text-align:center">
-                                            <span t-esc="l.product_uom.name" style='text-align:center' />
+                                        <td style="border:1pt solid black;text-align:right;padding:3pt">
+                                            <span t-field="l.price_total"
+                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                         </td>
                                         <td style="text-align:right;padding:3pt;border:1pt solid black;">
                                             <span t-field="l.price_unit"
                                                 t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                         </td>
-                                        <td style="border:1pt solid black;text-align:right;padding:3pt">
-                                            <span t-field="l.price_total"
-                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                        <td style="border:1pt solid black;padding:3pt;text-align:right">
+                                            <span t-esc="l.product_uom.name" style='text-align:right' />
+                                        </td>
+                                        <td style="text-align:right;padding:3pt; border:1pt solid black;">
+                                            <span t-esc="'%.2f'%(l.product_uom_qty)" />
+                                        </td>
+                                        <td style="border:1pt solid black;padding:3pt:text-align:right">
+                                            <span t-field="l.name" style='text-align:right'/>
+                                        </td>
+                                        <td style="border:1pt solid black;padding:3pt;text-align:center">
+                                            <span t-esc="n"/>
                                         </td>
                                     </t>
                                     <t t-set="n" t-value="n + 1" />
@@ -138,33 +138,32 @@
                 <div class="row mt32 mb32 fo" style='margin-bottom:20px;margin-left:50px;margin-right:50px'>
                     <div class="col-12">
                         <table style="margin-bottom:20px;border:1pt solid grey;width:100%;color:black"
-                            class="table-condensed" id="totals" dir="rtl">
+                            class="table-condensed" id="totals" dir="ltl">
                             <thead>
                                 <tr style="background-color:#FED2AA;">
-                                    <td style="border:1pt solid black;text-align:right;padding:3pt"
-                                        class="text-right">
+                                    <td style="border:1pt solid black;text-align:center;padding:3pt">
                                         <span t-field="o.amount_untaxed"
                                             t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                     </td>
-                                    <td style="border:1pt solid black;font-weight: bold;text-align:left;padding:3pt">
+                                    <td style="border:1pt solid black;font-weight: bold;text-align:right;padding:3pt">
                                         <span style='font-weight: bold'>المبلع الاجمالي بدون ضريبة</span>
                                     </td>
                                 </tr>
                                 <tr style="background-color:#FED2AA;">
-                                    <td style="border:1pt solid black;text-align:right;padding:3pt" class="text-right">
+                                    <td style="border:1pt solid black;text-align:center;padding:3pt">
                                         <span t-esc="o.amount_tax"
                                             t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                     </td>
-                                    <td style="border:1pt solid black;font-weight: bold;text-align:left;padding:3pt">
+                                    <td style="border:1pt solid black;font-weight: bold;text-align:right;padding:3pt">
                                         <span style='font-weight: bold'>قيمة الضريبة %15</span>
                             </td>
                                 </tr>
                                 <tr style="background-color:#FED2AA;">
-                                    <td style="border:1pt solid black;text-align:right;padding:3pt" class="text-right">
+                                    <td style="border:1pt solid black;text-align:center;padding:3pt">
                                         <span t-esc="o.amount_total"
                                             t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
                                     </td>
-                                    <td style="border:1pt solid black;font-weight: bold;text-align:left;padding:3pt">
+                                    <td style="border:1pt solid black;font-weight: bold;text-align:right;padding:3pt">
                                         <span style='font-weight: bold'>المبلغ الاجمالي مع الضريبة %15</span>
                             </td>
                                 </tr>
@@ -175,7 +174,7 @@
                 <br />
                 <div class="row mt32 mb32 fo">
                     <div class="col-12">
-                        <p t-if="o.note" dir="rtl">
+                        <p t-if="o.note" dir="ltl">
                             <br />
                             <span t-field="o.note" />
                         </p>
@@ -184,12 +183,11 @@
             </div>
         </xpath>
     </template>
-    <template id="drdr_report_quotation_ar">
+    <template id="drdr_report_quotation_ar" >
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="drdr_quotation_template.inherit_ps_sale_report_document_ar"/>
             </t>
         </t>
     </template>
-
 </odoo>

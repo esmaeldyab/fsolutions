@@ -23,11 +23,10 @@
 
     # always loaded
     'data': [
-        'views/company.xml',
         'report/action_report.xml',
+        'report/inherit_ps_sale_report_document_us.xml',
         'report/inherit_external_layout_sale.xml',
-        'report/inherit_ps_sale_report_document.xml',
-        'report/inherit_ps_sale_report_document_ar.xml'
+        'report/inherit_ps_sale_report_document_ar.xml',
     ],
     'assets': {
         'web.report_assets_pdf': [ 
