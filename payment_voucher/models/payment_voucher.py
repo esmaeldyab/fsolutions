@@ -122,7 +122,7 @@ class PaymentVoucher(models.Model):
                 total_amount = 0.0
                 total_amount_currency = 0.0
                 move_line_src = {
-                    'name': str(line.name or "") + "/" + str(line.ref or ""),
+                    'name': (str(line.name or "") + "/") if line.name else "" + str(line.ref or ""),
                     'account_id': line.account_id.id,
                     'amount_currency': amount_currency,
                     'debit': balance if rec.voucher_type == 'out_voucher' else 0.0,
@@ -177,7 +177,7 @@ class PaymentVoucher(models.Model):
                     move_line_values.append(move_line_tax_values)
                 if not rec.collect_entry:
                     move_line_dst = {
-                        'name': _("Payment Voucher") + " / " + str(line.name or "") + " / " + str(rec.date),
+                        'name': _("Payment Voucher") + (("/"+str(line.name)) if line.name else "") + " / " + str(rec.date),
                         'debit': total_amount if rec.voucher_type == 'in_voucher' else 0.0,
                         'credit': total_amount if rec.voucher_type == 'out_voucher' else 0.0,
                         'account_id': rec.journal_id.default_account_id.id,
@@ -190,7 +190,7 @@ class PaymentVoucher(models.Model):
                     move_line_values.append(move_line_dst)
             if rec.collect_entry:
                 move_line_dst = {
-                    'name': _("Payment Voucher") + " / " + str(rec.ref or "") + " / " + str(rec.date),
+                    'name': _("Payment Voucher") + (("/"+str(line.ref)) if line.ref else "" )+ " / " + str(rec.date),
                     'debit': total_payment_amount if rec.voucher_type == 'in_voucher' else 0.0,
                     'credit': total_payment_amount if rec.voucher_type == 'out_voucher' else 0.0,
                     'account_id': rec.journal_id.default_account_id.id,

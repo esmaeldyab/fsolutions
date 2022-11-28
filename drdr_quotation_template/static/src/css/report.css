@@ -7,11 +7,12 @@
     src: url('../fonts/CALIFR.TTF') format('woff')
 }
 .fo{
-    font-family: calir !important;
+    font-family: Arial !important;
     font-size: 11px;
 }
 .page{
   font-weight: bold;
+  font-family: Arial !important;;
 }
 .cover-log {
   display: -webkit-box; /* wkhtmltopdf uses this one */
@@ -36,8 +37,7 @@
 }
 
 .page h3 {
-  font-family: cali !important;
-  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif !important;
   background-color: rgb(255, 255, 255) !important;
   color: rgb(0, 0, 0) !important;
 }
@@ -55,5 +55,5 @@
   color: #000;
 }
 .arabic{
-  font-family: cali !important;
+  font-family: Arial !important;
 }
